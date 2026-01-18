@@ -358,10 +358,6 @@ sequenceDiagram
     rect rgb(255, 245, 230)
     Note over UE2: T=10분 - Cell Selection
 
-    UE2->>GNSS: Location Request
-    GNSS->>GNSS: 위치 측위 + Geocoding
-    GNSS->>UE2: Country Code: KR
-
     UE2->>RS: GET /reputation/450-05-eNB8888-Cell1
 
     RS->>UE2: {<br/>"current_reputation": 50,<br/>"status": "BARRING"<br/>}
@@ -382,10 +378,6 @@ sequenceDiagram
     Note over LegitBS: 동일 Cell ID로<br/>정상 기지국 재가동
 
     Note over UE1: T=35분 - Cell Selection
-
-    UE1->>GNSS: Location Request
-    GNSS->>GNSS: 위치 측위 + Geocoding
-    GNSS->>UE1: Country Code: KR
 
     UE1->>RS: GET /reputation/450-05-eNB8888-Cell1
 
