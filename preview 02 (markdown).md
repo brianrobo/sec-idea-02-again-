@@ -330,18 +330,18 @@ sequenceDiagram
     rect rgb(255, 220, 220)
     Note over UE1,FBS: T=0분 - Null Cipher 공격
 
-    UE1->>GNSS: Location Request<br/>(Country Code 확인 요청)
-    GNSS->>GNSS: 위치 측위 (Position Measurement)<br/>+ Geocoding 작업
-    GNSS->>UE1: Country Code 응답<br/>(예: KR - South Korea)
-
-    Note over UE1: Country별 Null Cipher 정책 확인<br/>KR: Null Cipher 미사용 국가 ✅
-
     UE1->>FBS: ATTACH REQUEST
     FBS->>UE1: AUTHENTICATION REQUEST
     UE1->>FBS: AUTHENTICATION RESPONSE
     FBS->>UE1: SECURITY MODE COMMAND<br/>⚠️ EEA0/EIA0 (Null Cipher)
 
-    Note over UE1: ⚠️ Scenario B 패턴 매칭!<br/>• GNSS Country: KR (Null Cipher 금지)<br/>• UE Capability: EEA2 지원<br/>• Network Command: EEA0 선택<br/>→ Downgrade Attack 확정!
+    Note over UE1: ⚠️ Security Mode Command에서<br/>Null Cipher (EEA0/EIA0) 탐지!
+
+    UE1->>GNSS: Position Request<br/>(Country Code 확인 요청)
+    GNSS->>GNSS: 위치 측위 (Position Measurement)<br/>+ Geocoding 작업
+    GNSS->>UE1: Country Code 응답<br/>(예: KR - South Korea)
+
+    Note over UE1: ⚠️ Scenario B 패턴 매칭!<br/>• Security Mode: EEA0/EIA0 (Null Cipher)<br/>• GNSS Country: KR (Null Cipher 금지)<br/>• UE Capability: EEA2 지원<br/>→ Downgrade Attack 확정!
 
     UE1->>RS: THREAT_REPORT<br/>{<br/>"cell_id": "450-05-eNB8888-Cell1",<br/>"threat_type": "NULL_CIPHER",<br/>"score": 50,<br/>"ttl_seconds": 7200<br/>}
 
