@@ -1,5 +1,7 @@
 3G 이후 상호 인증 도입의 의미
+
 1. 2G (GSM)의 취약점
+
 2G에서는 단방향 인증만 존재 (TS 43.020):
 
 ``` mermaid
@@ -29,8 +31,11 @@ sequenceDiagram
     BSS->>UE: LOCATION UPDATE ACCEPT
     
     Note over UE,NSS: ⚠️ 2G의 문제점:<br/>• Network 인증 없음<br/>• FBS가 자유롭게 망 등록 완료 가능<br/>• IMSI 탈취 후 정상 동작 가능
-2G FBS 공격 성공 시나리오:
+
 ```
+
+2G FBS 공격 성공 시나리오:
+
 
 1. FBS → UE: AUTHENTICATION REQUEST (임의의 RAND)
 2. UE → FBS: AUTHENTICATION RESPONSE (SRES)
